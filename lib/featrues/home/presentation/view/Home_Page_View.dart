@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
+import 'package:x_coil/featrues/home/presentation/view/widget/search_animated_button.dart';
 
 import '../../../drawer/presentaion/drawerPage.dart';
 import 'widget/home_page_body.dart';
@@ -16,15 +17,21 @@ class Home_Page_View extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
+              indicatorWeight: 1,
               indicatorSize: TabBarIndicatorSize.label,
               indicatorColor: AppColors.primamryColor,
               tabs: [
-                Tab(
-                  child: Text("محركات 1 فاز",
-                      style: TextStyle(
-                          //fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 2, 2, 2))),
+                SizedBox(
+                  width: double.infinity,
+                  child: Expanded(
+                    child: Tab(
+                      child: Text("محركات 1 فاز",
+                          style: TextStyle(
+                              //fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 2, 2, 2))),
+                    ),
+                  ),
                 ),
                 /* Tab(
                   child: Text(
@@ -62,27 +69,7 @@ class Home_Page_View extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            IconButton(
-                              tooltip: "البحث",
-                              color: Colors.white,
-                              onPressed: () {
-                                Navigator.push(
-                                    context, ScaleTransition2(DrawerPage()));
-                              },
-                              icon: const Row(
-                                children: [
-                                  // const Icon(Icons.search),
-                                  Text(
-                                    "ابحث في X-Coil ",
-                                    style: TextStyle(
-                                        //fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255)),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            const searchAnimationButton(),
                             const Spacer(),
                             IconButton(
                               tooltip: "مزامنة مع الانترنت",

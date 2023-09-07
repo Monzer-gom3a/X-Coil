@@ -7,7 +7,7 @@ class OnephaseListView extends StatelessWidget {
     super.key,
   });
 
-  int count = 0;
+  int count = 10;
 
   @override
   Widget build(BuildContext context) {

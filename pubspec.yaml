@@ -38,6 +38,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   pull_down_button: ^0.9.3
+  animations:
 
 dev_dependencies:
   flutter_test:
