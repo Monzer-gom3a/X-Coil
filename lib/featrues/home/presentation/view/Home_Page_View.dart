@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 
 import 'widget/home_page_body.dart';
@@ -13,7 +12,6 @@ class Home_Page_View extends StatelessWidget {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: AppColors.grayColor,
           appBar: AppBar(
             bottom: const TabBar(
               indicatorSize: TabBarIndicatorSize.label,
@@ -97,8 +95,8 @@ class Home_Page_View extends StatelessWidget {
             elevation: 0,
             centerTitle: true,
           ),
-          body: home_page_body(),
-          floatingActionButton: FloatingAddButton(),
+          body: const home_page_body(),
+          floatingActionButton: const FloatingAddButton(),
         ));
   }
 }
