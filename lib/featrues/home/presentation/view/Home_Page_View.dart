@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 
 class Home_Page_View extends StatelessWidget {
   const Home_Page_View({super.key});
@@ -95,6 +96,7 @@ class Home_Page_View extends StatelessWidget {
             elevation: 0,
             centerTitle: true,
           ),
+          floatingActionButton: FloatingAddButton(),
         ));
   }
 }
