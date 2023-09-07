@@ -1,0 +1,91 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pull_down_button/pull_down_button.dart';
+
+// ignore: camel_case_types
+class onePhaseListItem extends StatelessWidget {
+  const onePhaseListItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Container(
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.circular(10)),
+           
+            child: PullDownButton(
+                itemBuilder: (context) => [
+                      PullDownMenuItem(
+                        title: 'نسخ',
+                        subtitle: 'نسخ الكود الى الحافظة',
+                        onTap: () {
+                          Clipboard.setData(
+                                  ClipboardData(text: 'll'.toString()))
+                              .then((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                dismissDirection: DismissDirection.horizontal,
+                                backgroundColor: Colors.green[900],
+                                content: const Center(
+                                  child: Text("تم النسخ الى الحافظة",
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontFamily: 'cairo',
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255))),
+                                )));
+                          });
+                        },
+                        icon: CupertinoIcons.doc_on_clipboard,
+                      ),
+                      PullDownMenuItem(
+                        onTap: () {},
+                        subtitle: 'الحذف من الهاتف و الانترنت',
+                        title: 'حذف',
+                        isDestructive: true,
+                        icon: CupertinoIcons.delete,
+                      ),
+                    ],
+                buttonBuilder: (context, showMenu) => GestureDetector(
+                    onLongPress: () {
+                      showMenu();
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Stack(children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'منذر محمد',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontFamily: "cairo",
+                                  //   fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'كالبيدا',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontFamily: "cairo",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "لا يوجد تاريخ",
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: "cairo",
+                              ),
+                            ),
+                          ],
+                        )
+                      ]),
+                    )))));
+  }
+}
