@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 
 import 'widget/home_page_body.dart';
@@ -12,7 +13,7 @@ class Home_Page_View extends StatelessWidget {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 226, 227, 230),
+          backgroundColor: AppColors.grayColor,
           appBar: AppBar(
             bottom: const TabBar(
               indicatorSize: TabBarIndicatorSize.label,
@@ -80,7 +81,8 @@ class Home_Page_View extends StatelessWidget {
                             IconButton(
                               tooltip: "مزامنة مع الانترنت",
                               onPressed: () {},
-                              icon: const Icon(CupertinoIcons.cloud_download),
+                              icon:
+                                  const Icon(CupertinoIcons.arrow_2_circlepath),
                               color: const Color.fromARGB(255, 255, 255, 255),
                               iconSize: 23,
                             )
@@ -100,4 +102,3 @@ class Home_Page_View extends StatelessWidget {
         ));
   }
 }
-

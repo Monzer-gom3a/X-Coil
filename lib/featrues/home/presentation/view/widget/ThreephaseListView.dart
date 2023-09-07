@@ -22,7 +22,7 @@ class ThreephaseListView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/notFound.png',
+                  'assets/images/notFound.png',
                   width: 300,
                 ),
                 const Text(

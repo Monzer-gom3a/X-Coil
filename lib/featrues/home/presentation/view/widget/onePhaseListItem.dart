@@ -17,7 +17,6 @@ class onePhaseListItem extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.circular(10)),
-           
             child: PullDownButton(
                 itemBuilder: (context) => [
                       PullDownMenuItem(
@@ -34,7 +33,6 @@ class onePhaseListItem extends StatelessWidget {
                                   child: Text("تم النسخ الى الحافظة",
                                       style: TextStyle(
                                           fontSize: 10,
-                                          fontFamily: 'cairo',
                                           color: Color.fromARGB(
                                               255, 255, 255, 255))),
                                 )));
@@ -64,7 +62,6 @@ class onePhaseListItem extends StatelessWidget {
                               'منذر محمد',
                               style: TextStyle(
                                   color: Colors.red,
-                                  fontFamily: "cairo",
                                   //   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -72,7 +69,6 @@ class onePhaseListItem extends StatelessWidget {
                               'كالبيدا',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: "cairo",
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -80,7 +76,6 @@ class onePhaseListItem extends StatelessWidget {
                               "لا يوجد تاريخ",
                               style: TextStyle(
                                 fontSize: 13,
-                                fontFamily: "cairo",
                               ),
                             ),
                           ],
