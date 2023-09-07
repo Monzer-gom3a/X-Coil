@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'featrues/home/presentation/view/Home_Page_View.dart';
 
@@ -13,14 +14,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'X-Coil',
       theme: ThemeData(
-      
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorSchemeSeed: Colors.red,
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
       ),
+       localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ar', 'EG'), // English, no country code
+      ],
+      debugShowCheckedModeBanner: false,
       home: const Home_Page_View(),
     );
   }
 }
-
