@@ -47,7 +47,7 @@ class Home_Page_View extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            /* IconButton(
+                            IconButton(
                               tooltip: "القائمة الجانبية",
                               onPressed: () {},
                               icon: Image.asset(
@@ -55,7 +55,7 @@ class Home_Page_View extends StatelessWidget {
                                 color: const Color.fromARGB(255, 255, 255, 255),
                                 width: 23,
                               ),
-                            ), */
+                            ),
                             const Spacer(),
                             IconButton(
                               tooltip: "البحث",
