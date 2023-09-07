@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.red,
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'cairo'
       ),
        localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

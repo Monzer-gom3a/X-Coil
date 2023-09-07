@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 
+import 'widget/home_page_body.dart';
+
 class Home_Page_View extends StatelessWidget {
   const Home_Page_View({super.key});
 
@@ -20,7 +22,6 @@ class Home_Page_View extends StatelessWidget {
                   child: Text("محركات 1 فاز",
                       style: TextStyle(
                           //fontSize: 17,
-                          fontFamily: 'cairo',
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 2, 2, 2))),
                 ),
@@ -29,7 +30,6 @@ class Home_Page_View extends StatelessWidget {
                     "محركات 3 فازات",
                     style: TextStyle(
                         //fontSize: 17,
-                        fontFamily: 'cairo',
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 2, 2, 2)),
                   ),
@@ -69,7 +69,6 @@ class Home_Page_View extends StatelessWidget {
                                     "ابحث في X-Coil ",
                                     style: TextStyle(
                                         //fontSize: 17,
-                                        fontFamily: 'cairo',
                                         fontWeight: FontWeight.bold,
                                         color:
                                             Color.fromARGB(255, 255, 255, 255)),
@@ -96,7 +95,9 @@ class Home_Page_View extends StatelessWidget {
             elevation: 0,
             centerTitle: true,
           ),
+          body: home_page_body(),
           floatingActionButton: FloatingAddButton(),
         ));
   }
 }
+
