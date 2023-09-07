@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:x_coil/wrapper.dart';
 
-import 'featrues/home/presentation/view/Home_Page_View.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         Locale('ar', 'EG'), // English, no country code
       ],
       debugShowCheckedModeBanner: false,
-      home: const Home_Page_View(),
+      home: const Wrapper(),
     );
   }
 }
