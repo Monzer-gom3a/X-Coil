@@ -5,6 +5,7 @@ import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.
 import 'package:x_coil/featrues/home/presentation/view/widget/search_animated_button.dart';
 
 import '../../../drawer/presentaion/drawerPage.dart';
+import 'transitions/transitions.dart';
 import 'widget/home_page_body.dart';
 
 class Home_Page_View extends StatelessWidget {
@@ -94,52 +95,4 @@ class Home_Page_View extends StatelessWidget {
           floatingActionButton: const FloatingAddButton(),
         ));
   }
-}
-
-class SizeTransition5 extends PageRouteBuilder {
-  final Widget page;
-
-  SizeTransition5(this.page)
-      : super(
-          pageBuilder: (context, animation, anotherAnimation) => page,
-          transitionDuration: Duration(milliseconds: 1000),
-          reverseTransitionDuration: Duration(milliseconds: 200),
-          transitionsBuilder: (context, animation, anotherAnimation, child) {
-            animation = CurvedAnimation(
-                curve: Curves.fastLinearToSlowEaseIn,
-                parent: animation,
-                reverseCurve: Curves.fastOutSlowIn);
-            return Align(
-              alignment: Alignment.centerRight,
-              child: SizeTransition(
-                axis: Axis.horizontal,
-                sizeFactor: animation,
-                axisAlignment: 0,
-                child: page,
-              ),
-            );
-          },
-        );
-}
-
-class ScaleTransition2 extends PageRouteBuilder {
-  final Widget page;
-
-  ScaleTransition2(this.page)
-      : super(
-          pageBuilder: (context, animation, anotherAnimation) => page,
-          transitionDuration: Duration(milliseconds: 1000),
-          reverseTransitionDuration: Duration(milliseconds: 200),
-          transitionsBuilder: (context, animation, anotherAnimation, child) {
-            animation = CurvedAnimation(
-                curve: Curves.fastLinearToSlowEaseIn,
-                parent: animation,
-                reverseCurve: Curves.fastOutSlowIn);
-            return ScaleTransition(
-              alignment: Alignment.topCenter,
-              scale: animation,
-              child: child,
-            );
-          },
-        );
 }
