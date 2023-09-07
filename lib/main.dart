@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/wrapper.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'X-Coil',
       theme: ThemeData(
-        colorSchemeSeed: Colors.red,
-        useMaterial3: true,
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'cairo'
-      ),
-       localizationsDelegates: const [
+          colorSchemeSeed: AppColors.primamryColor,
+          useMaterial3: true,
+          fontFamily: 'cairo'),
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

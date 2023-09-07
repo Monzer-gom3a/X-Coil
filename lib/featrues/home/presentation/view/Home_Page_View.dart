@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 
+import '../../../drawer/presentaion/drawerPage.dart';
 import 'widget/home_page_body.dart';
 
 class Home_Page_View extends StatelessWidget {
@@ -10,12 +12,12 @@ class Home_Page_View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: 1,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
               indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: Color(0xE9D40B0B),
+              indicatorColor: AppColors.primamryColor,
               tabs: [
                 Tab(
                   child: Text("محركات 1 فاز",
@@ -24,7 +26,7 @@ class Home_Page_View extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 2, 2, 2))),
                 ),
-                Tab(
+                /* Tab(
                   child: Text(
                     "محركات 3 فازات",
                     style: TextStyle(
@@ -32,7 +34,7 @@ class Home_Page_View extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 2, 2, 2)),
                   ),
-                ),
+                ), */
               ],
             ),
             title: Row(
@@ -40,7 +42,7 @@ class Home_Page_View extends StatelessWidget {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(233, 212, 11, 11),
+                        color: AppColors.primamryColor,
                         borderRadius: BorderRadius.circular(10)),
                     //  width: double.infinity,
                     child: Stack(
@@ -49,7 +51,10 @@ class Home_Page_View extends StatelessWidget {
                           children: [
                             IconButton(
                               tooltip: "القائمة الجانبية",
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context, SizeTransition5(DrawerPage()));
+                              },
                               icon: Image.asset(
                                 'assets/images/menu.png',
                                 color: const Color.fromARGB(255, 255, 255, 255),
@@ -60,7 +65,10 @@ class Home_Page_View extends StatelessWidget {
                             IconButton(
                               tooltip: "البحث",
                               color: Colors.white,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context, ScaleTransition2(DrawerPage()));
+                              },
                               icon: const Row(
                                 children: [
                                   // const Icon(Icons.search),
@@ -99,4 +107,52 @@ class Home_Page_View extends StatelessWidget {
           floatingActionButton: const FloatingAddButton(),
         ));
   }
+}
+
+class SizeTransition5 extends PageRouteBuilder {
+  final Widget page;
+
+  SizeTransition5(this.page)
+      : super(
+          pageBuilder: (context, animation, anotherAnimation) => page,
+          transitionDuration: Duration(milliseconds: 1000),
+          reverseTransitionDuration: Duration(milliseconds: 200),
+          transitionsBuilder: (context, animation, anotherAnimation, child) {
+            animation = CurvedAnimation(
+                curve: Curves.fastLinearToSlowEaseIn,
+                parent: animation,
+                reverseCurve: Curves.fastOutSlowIn);
+            return Align(
+              alignment: Alignment.centerRight,
+              child: SizeTransition(
+                axis: Axis.horizontal,
+                sizeFactor: animation,
+                axisAlignment: 0,
+                child: page,
+              ),
+            );
+          },
+        );
+}
+
+class ScaleTransition2 extends PageRouteBuilder {
+  final Widget page;
+
+  ScaleTransition2(this.page)
+      : super(
+          pageBuilder: (context, animation, anotherAnimation) => page,
+          transitionDuration: Duration(milliseconds: 1000),
+          reverseTransitionDuration: Duration(milliseconds: 200),
+          transitionsBuilder: (context, animation, anotherAnimation, child) {
+            animation = CurvedAnimation(
+                curve: Curves.fastLinearToSlowEaseIn,
+                parent: animation,
+                reverseCurve: Curves.fastOutSlowIn);
+            return ScaleTransition(
+              alignment: Alignment.topCenter,
+              scale: animation,
+              child: child,
+            );
+          },
+        );
 }

@@ -10,7 +10,7 @@ class home_page_body extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBarView(physics: BouncingScrollPhysics(), children: [
       OnephaseListView(),
-       ThreephaseListView(),
+      //ThreephaseListView(),
     ]);
   }
 }
