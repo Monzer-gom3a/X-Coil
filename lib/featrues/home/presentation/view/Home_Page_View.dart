@@ -119,7 +119,7 @@ class tab1 extends StatelessWidget {
           CircleAvatar(
             radius: 11,
             child: Text(
-              '308',
+              '10',
               style: TextStyle(fontSize: 10),
             ),
           )
