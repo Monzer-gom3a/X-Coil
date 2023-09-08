@@ -6,9 +6,10 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_coil/blocs/Onephase_Add_cubit/OnePhase_Add_cubit.dart';
 import 'package:x_coil/featrues/OnePhaseAddPage/data/models/onePhaseObject.dart';
 import 'package:x_coil/featrues/OnePhaseAddPage/presentation/view_models/widgets/Textfieldmodel.dart';
-
 
 class OnePhaseAddPage extends StatefulWidget {
   const OnePhaseAddPage({Key? key}) : super(key: key);
@@ -18,10 +19,6 @@ class OnePhaseAddPage extends StatefulWidget {
 }
 
 class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
-
-
-
-
 /*   @override
   void initState() {
     // TODO: implement initState
@@ -32,7 +29,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
   } */
 
   OnePhaseObject objectbuild() {
-   var id = DateTime.now().day.toString() +
+    var id = DateTime.now().day.toString() +
         DateTime.now().month.toString() +
         DateTime.now().year.toString() +
         "userName" +
@@ -902,42 +899,53 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                       width: MediaQuery.of(context).size.width > 500
                           ? null
                           : double.infinity,
-                      child: TextButton(
-                          onLongPress: () {
-                            log("erased");
-                          },
-                          onPressed: () {
-                            if (MotorNameController.text == '' ||
-                                CustNameController.text == '' ||
-                                HP.text == '' ||
-                                Length.text == '' ||
-                                Diameter.text == '' ||
-                                CylinderNum.text == '') {
-                              log("please complete data");
+                      child: BlocBuilder<AddOnePhaseCubit, AddOnePhaseState>(
+                        builder: (context, state) {
+                          return TextButton(
+                              onLongPress: () {
+                                log("erased");
+                              },
+                              onPressed: () {
+                                if (MotorNameController.text == '' ||
+                                    CustNameController.text == '' ||
+                                    HP.text == '' ||
+                                    Length.text == '' ||
+                                    Diameter.text == '' ||
+                                    CylinderNum.text == '') {
+                                  log("please complete data");
 
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 184, 12, 0),
-                                content: Text(
-                                  'اكمل البيانات الاساسية',
-                                  style: TextStyle(
-                                      color: const Color.fromARGB(
-                                          255, 255, 255, 255),
-                                      fontFamily: "cairo"),
-                                ),
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 184, 12, 0),
+                                    content: Text(
+                                      'اكمل البيانات الاساسية',
+                                      style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          fontFamily: "cairo"),
+                                    ),
+                                  ));
+                                } else {
+                                  BlocProvider.of<AddOnePhaseCubit>(context)
+                                      .sendData(objectbuild());
+                                  if (state is AddCoilSuccess) {
+                                    //Navigator.pop(context);
+                                    print("gooooooo");
+                                  } else {
+                                    print(AddCoilFailure);
+                                  }
+                                }
+                              },
+                              child: const Text(
+                                "حفظ",
+                                style: TextStyle(
+                                    fontFamily: "cairo",
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 255, 255, 255)),
                               ));
-                            } else {
-                           
-                            }
-                          },
-                          child: const Text(
-                            "حفظ",
-                            style: TextStyle(
-                                fontFamily: "cairo",
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 255, 255, 255)),
-                          )),
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(

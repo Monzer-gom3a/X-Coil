@@ -175,7 +175,7 @@ class tab1 extends StatelessWidget {
             radius: 11,
             child: Text(
               '10',
-              style: TextStyle(fontSize: 10),
+              style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),
             ),
           )
         ],
