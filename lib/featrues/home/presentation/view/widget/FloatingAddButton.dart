@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:x_coil/featrues/OnePhaseAddPage/presentation/view/1phaseAddPage.dart';
 
 class FloatingAddButton extends StatelessWidget {
   const FloatingAddButton({
@@ -7,10 +8,15 @@ class FloatingAddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
+    return FloatingActionButton( 
       autofocus: true,
       tooltip: "إضافة ",
       onPressed: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return OnePhaseAddPage();
+          },
+        ));
       },
       backgroundColor: const Color.fromARGB(233, 212, 11, 11),
       child: const Icon(
@@ -20,4 +26,3 @@ class FloatingAddButton extends StatelessWidget {
     );
   }
 }
-  
