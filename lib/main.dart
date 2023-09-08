@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:x_coil/blocs/Internet_bloc/network_bloc.dart';
+import 'package:x_coil/blocs/Internet_bloc/network_event.dart';
 import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/wrapper.dart';
 
@@ -28,7 +31,9 @@ class MyApp extends StatelessWidget {
         Locale('ar', 'EG'), // English, no country code
       ],
       debugShowCheckedModeBanner: false,
-      home: const Wrapper(),
+      home: BlocProvider(
+          create: (context) => NetworkBloc()..add(NetworkObserve()),
+          child: Wrapper()),
     );
   }
 }

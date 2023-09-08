@@ -1,5 +1,9 @@
+import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_coil/blocs/Internet_bloc/network_bloc.dart';
+import 'package:x_coil/blocs/Internet_bloc/network_state.dart';
 import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/search_animated_button.dart';
@@ -51,7 +55,27 @@ class Home_Page_View extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            const searchAnimationButton(),
+                            BlocBuilder<NetworkBloc, NetworkState>(
+                              builder: (context, state) {
+                                if (state is NetworkFailure) {
+                                  return IconButton(
+                                    icon: const Icon(
+                                      CupertinoIcons.wifi_slash,
+                                      color: AppColors.whiteColor,
+                                    ),
+                                    onPressed: () {
+                                      FloatingSnackBar(
+                                          message: 'انت غير متصل بالانترنت',
+                                          context: context);
+                                    },
+                                  );
+                                } else if (state is NetworkSuccess) {
+                                  return const searchAnimationButton();
+                                } else {
+                                  return const SizedBox.shrink();
+                                }
+                              },
+                            ),
                             const Spacer(),
                             IconButton(
                               tooltip: "مزامنة مع الانترنت",
@@ -72,9 +96,40 @@ class Home_Page_View extends StatelessWidget {
             elevation: 0,
             centerTitle: true,
           ),
-          body: const home_page_body(),
+          body: Center(
+            child: home_page_body(),
+          ),
           floatingActionButton: const FloatingAddButton(),
         ));
+  }
+}
+
+class internetConnectionCheck extends StatelessWidget {
+  const internetConnectionCheck({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<NetworkBloc, NetworkState>(
+      listener: (context, state) {
+        if (state is NetworkFailure) {
+          FloatingSnackBar(
+              backgroundColor: AppColors.primamryColor,
+              message: "انت غير متصل بالانترنت",
+              context: context);
+          print("object");
+        } else if (state is NetworkSuccess) {
+          FloatingSnackBar(
+              backgroundColor: Color.fromARGB(255, 7, 152, 72),
+              message: "تم الاتصال بالانترنت",
+              context: context);
+        } else {
+          print("object111111111111111");
+        }
+      },
+      child: home_page_body(),
+    );
   }
 }
 
