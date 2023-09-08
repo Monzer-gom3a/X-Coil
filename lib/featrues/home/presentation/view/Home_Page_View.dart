@@ -22,27 +22,8 @@ class Home_Page_View extends StatelessWidget {
               indicatorSize: TabBarIndicatorSize.label,
               indicatorColor: AppColors.primamryColor,
               tabs: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Expanded(
-                    child: Tab(
-                      child: Text("محركات 1 فاز",
-                          style: TextStyle(
-                              //fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 2, 2, 2))),
-                    ),
-                  ),
-                ),
-                /* Tab(
-                  child: Text(
-                    "محركات 3 فازات",
-                    style: TextStyle(
-                        //fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 2, 2, 2)),
-                  ),
-                ), */
+                tab1(),
+                //tab2(),
               ],
             ),
             title: Row(
@@ -94,5 +75,56 @@ class Home_Page_View extends StatelessWidget {
           body: const home_page_body(),
           floatingActionButton: const FloatingAddButton(),
         ));
+  }
+}
+
+class tab2 extends StatelessWidget {
+  const tab2({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Tab(
+      child: Text(
+        "محركات 3 فازات",
+        style: TextStyle(
+            //fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 2, 2, 2)),
+      ),
+    );
+  }
+}
+
+class tab1 extends StatelessWidget {
+  const tab1({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Tab(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("محركات 1 فاز",
+              style: TextStyle(
+                  //fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 2, 2, 2))),
+          SizedBox(
+            width: 6,
+          ),
+          CircleAvatar(
+            radius: 11,
+            child: Text(
+              '308',
+              style: TextStyle(fontSize: 10),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

@@ -11,7 +11,7 @@ class searchAnimationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
-      transitionDuration: Duration(milliseconds: 500),
+     // transitionDuration: Duration(milliseconds: 500),
       closedElevation: 0,
       tappable: true,
       closedColor: const Color.fromARGB(0, 193, 11, 11),

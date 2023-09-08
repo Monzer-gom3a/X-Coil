@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:x_coil/core/utils/constance.dart';
 
 class ThreephaseListView extends StatelessWidget {
-  ThreephaseListView({
+  const ThreephaseListView({
     super.key,
   });
 
-  int count = 10;
 
   @override
   Widget build(BuildContext context) {
