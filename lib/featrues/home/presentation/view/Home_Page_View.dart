@@ -84,6 +84,8 @@ class Home_Page_View extends StatelessWidget {
                               tooltip: "مزامنة مع الانترنت",
                               onPressed: () {
                                 GetStorage('OnePhaseCoils').erase();
+                                GetStorage('User').erase();
+
                                 BlocProvider.of<OnePhaseCubit>(context)
                                     .fetchAllOnePhaseData();
                               },

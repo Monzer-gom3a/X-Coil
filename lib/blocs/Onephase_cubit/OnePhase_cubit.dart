@@ -25,12 +25,26 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
 
   void fetchAllOnePhaseData() {
     Data = [...(onePhaseBox.getValues())];
+
     count = Data.length;
     if (Data.length != 0) {
       emit(DBHasData());
     } else {
       emit(DBHasNoData());
     }
+  }
+
+  void deleteByID(String id) {
+    onePhaseBox.remove(id);
+    fetchAllOnePhaseData();
+    /*  Data = [...(onePhaseBox.getValues())];
+
+    count = Data.length;
+    if (Data.length != 0) {
+      emit(DBHasData());
+    } else {
+      emit(DBHasNoData());
+    } */
   }
 
   onePhaselocalDataSave(OnePhaseObject data) {
