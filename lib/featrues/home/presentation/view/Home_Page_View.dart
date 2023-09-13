@@ -2,8 +2,10 @@ import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:x_coil/blocs/Internet_bloc/network_bloc.dart';
 import 'package:x_coil/blocs/Internet_bloc/network_state.dart';
+import 'package:x_coil/blocs/Onephase_cubit/OnePhase_cubit.dart';
 import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/FloatingAddButton.dart';
 import 'package:x_coil/featrues/home/presentation/view/widget/search_animated_button.dart';
@@ -20,6 +22,7 @@ class Home_Page_View extends StatelessWidget {
     return DefaultTabController(
         length: 1,
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             bottom: const TabBar(
               indicatorWeight: 1,
@@ -79,7 +82,11 @@ class Home_Page_View extends StatelessWidget {
                             const Spacer(),
                             IconButton(
                               tooltip: "مزامنة مع الانترنت",
-                              onPressed: () {},
+                              onPressed: () {
+                                GetStorage('OnePhaseCoils').erase();
+                                BlocProvider.of<OnePhaseCubit>(context)
+                                    .fetchAllOnePhaseData();
+                              },
                               icon:
                                   const Icon(CupertinoIcons.arrow_2_circlepath),
                               color: const Color.fromARGB(255, 255, 255, 255),
@@ -152,17 +159,22 @@ class tab2 extends StatelessWidget {
   }
 }
 
-class tab1 extends StatelessWidget {
+class tab1 extends StatefulWidget {
   const tab1({
     super.key,
   });
 
   @override
+  State<tab1> createState() => _tab1State();
+}
+
+class _tab1State extends State<tab1> {
+  @override
   Widget build(BuildContext context) {
-    return const Tab(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+    return BlocBuilder<OnePhaseCubit, OnePhaseState>(
+      builder: (context, state) {
+        return Tab(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("محركات 1 فاز",
               style: TextStyle(
                   //fontSize: 17,
@@ -171,15 +183,16 @@ class tab1 extends StatelessWidget {
           SizedBox(
             width: 6,
           ),
+          // int rr = BlocProvider.of<OnePhaseCubit>(context).getCount();
           CircleAvatar(
-            radius: 11,
+            radius: 10,
             child: Text(
-              '10',
-              style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),
+              '${BlocProvider.of<OnePhaseCubit>(context).count}',
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
             ),
           )
-        ],
-      ),
+        ]));
+      },
     );
   }
 }

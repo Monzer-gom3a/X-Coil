@@ -2,13 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pull_down_button/pull_down_button.dart';
+import 'package:x_coil/featrues/OnePhaseAddPage/data/models/onePhaseObject.dart';
 
 // ignore: camel_case_types
-class onePhaseListItem extends StatelessWidget {
-  const onePhaseListItem({
-    super.key,
-  });
+class onePhaseListItem extends StatefulWidget {
+  onePhaseListItem({Key? key, required this.data}) : super(key: key);
 
+  final OnePhaseObject data;
+
+  @override
+  State<onePhaseListItem> createState() => _onePhaseListItemState();
+}
+
+class _onePhaseListItemState extends State<onePhaseListItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,14 +58,14 @@ class onePhaseListItem extends StatelessWidget {
                     onLongPress: () {
                       showMenu();
                     },
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Stack(children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'منذر محمد',
+                              widget.data.custName.toString(),
                               style: TextStyle(
                                   color: Colors.red,
                                   //   fontSize: 16,

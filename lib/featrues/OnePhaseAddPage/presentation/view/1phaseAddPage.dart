@@ -7,9 +7,10 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:x_coil/blocs/Onephase_Add_cubit/OnePhase_Add_cubit.dart';
 import 'package:x_coil/featrues/OnePhaseAddPage/data/models/onePhaseObject.dart';
 import 'package:x_coil/featrues/OnePhaseAddPage/presentation/view_models/widgets/Textfieldmodel.dart';
+
+import '../../../../blocs/Onephase_cubit/OnePhase_cubit.dart';
 
 class OnePhaseAddPage extends StatefulWidget {
   const OnePhaseAddPage({Key? key}) : super(key: key);
@@ -151,6 +152,52 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
     // Clean up the controller when the widget is removed from the
     // widget tree.
     MotorNameController.dispose();
+    CustNameController.dispose();
+    HP.dispose();
+    CylinderNum.dispose();
+    Length.dispose();
+    Diameter.dispose();
+    CyWidth.dispose();
+    Crona.dispose();
+    Speed.dispose();
+    StartCap.dispose();
+    RunCap.dispose();
+    RunDiameter.dispose();
+    StartDiameter.dispose();
+    Notes.dispose();
+    one_1.dispose();
+    one_2.dispose();
+    one_3.dispose();
+    one_4.dispose();
+    one_5.dispose();
+    one_6.dispose();
+    one_7.dispose();
+    one_8.dispose();
+    one_9.dispose();
+    one_10.dispose();
+    one_11.dispose();
+    one_12.dispose();
+    one_13.dispose();
+    one_14.dispose();
+    one_15.dispose();
+    one_16.dispose();
+
+    two_1.dispose();
+    two_2.dispose();
+    two_3.dispose();
+    two_4.dispose();
+    two_5.dispose();
+    two_6.dispose();
+    two_7.dispose();
+    two_8.dispose();
+    two_9.dispose();
+    two_10.dispose();
+    two_11.dispose();
+    two_12.dispose();
+    two_13.dispose();
+    two_14.dispose();
+    two_15.dispose();
+    two_16.dispose();
 
     super.dispose();
   }
@@ -899,7 +946,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                       width: MediaQuery.of(context).size.width > 500
                           ? null
                           : double.infinity,
-                      child: BlocBuilder<AddOnePhaseCubit, AddOnePhaseState>(
+                      child: BlocBuilder<OnePhaseCubit, OnePhaseState>(
                         builder: (context, state) {
                           return TextButton(
                               onLongPress: () {
@@ -927,18 +974,16 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     ),
                                   ));
                                 } else {
-                                  BlocProvider.of<AddOnePhaseCubit>(context)
-                                      .sendData(objectbuild());
-                                  if (state is AddCoilSuccess) {
+                                  BlocProvider.of<OnePhaseCubit>(context)
+                                      .onePhaselocalDataSave(objectbuild());
+
+                                  if (state is AddCoilFailure) {
                                     //Navigator.pop(context);
-                                    print("gooooooo");
-                                  } else {
-                                    print(AddCoilFailure);
                                   }
                                 }
                               },
-                              child: const Text(
-                                "حفظ",
+                              child: Text(
+                                '${BlocProvider.of<OnePhaseCubit>(context).count}',
                                 style: TextStyle(
                                     fontFamily: "cairo",
                                     fontWeight: FontWeight.bold,

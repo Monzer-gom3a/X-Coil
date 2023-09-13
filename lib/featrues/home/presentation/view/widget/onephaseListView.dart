@@ -1,67 +1,94 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_coil/blocs/Onephase_cubit/OnePhase_cubit.dart';
 import 'package:x_coil/core/utils/constance.dart';
+import 'package:x_coil/featrues/OnePhaseAddPage/data/models/onePhaseObject.dart';
 import 'onePhaseListItem.dart';
 
-class OnephaseListView extends StatelessWidget {
+class OnephaseListView extends StatefulWidget {
   OnephaseListView({
     super.key,
   });
 
-  int count = 10;
+  @override
+  State<OnephaseListView> createState() => _OnephaseListViewState();
+}
 
+class _OnephaseListViewState extends State<OnephaseListView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<OnePhaseCubit>(context).fetchAllOnePhaseData();
+  }
+
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    return count > 0
-        ? Container(
-            color: AppColors.grayColor,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, crossAxisSpacing: 16),
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: count,
-                  itemBuilder: (context, index) {
-                    return const onePhaseListItem();
-                  },
+    return BlocBuilder<OnePhaseCubit, OnePhaseState>(builder: (context, state) {
+      List Data = BlocProvider.of<OnePhaseCubit>(context).Data;
+
+      return (state is DBHasData)
+          ? Container(
+              color: AppColors.grayColor,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, crossAxisSpacing: 16),
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: BlocProvider.of<OnePhaseCubit>(context).count,
+                    itemBuilder: (context, index) {
+                      OnePhaseObject DataObject =
+                          OnePhaseObject.fromJson(jsonDecode(Data[index]));
+                      return onePhaseListItem(
+                        data: DataObject,
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          )
-        : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                  ),
-                  height: 400,
-                  child: Column(
+            )
+          : (state is DBHasNoData)
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        'assets/images/notFound.png',
-                        width: 300,
-                      ),
-                      const Text(
-                        "لا يوجد بيانات محفوظة للعرض",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "cairo",
-                            fontSize: 18),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                        ),
+                        height: 400,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/notFound.png',
+                              width: 300,
+                            ),
+                            const Text(
+                              "لا يوجد بيانات محفوظة للعرض",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "cairo",
+                                  fontSize: 18),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          );
+                )
+              : Container();
+    });
   }
 }
