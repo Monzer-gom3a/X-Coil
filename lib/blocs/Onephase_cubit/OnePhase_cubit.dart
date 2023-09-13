@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,7 +17,7 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
 
   int count = 0;
   List<String> scheduleOnePhase = [];
-  List Data = [];
+  List data = [];
 
   getCount() {
     List onephaseKeys = [...onePhaseBox.getKeys()];
@@ -24,10 +25,10 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
   }
 
   void fetchAllOnePhaseData() {
-    Data = [...(onePhaseBox.getValues())];
+    data = [...(onePhaseBox.getValues())];
 
-    count = Data.length;
-    if (Data.length != 0) {
+    count = data.length;
+    if (data.isNotEmpty) {
       emit(DBHasData());
     } else {
       emit(DBHasNoData());
@@ -37,14 +38,6 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
   void deleteByID(String id) {
     onePhaseBox.remove(id);
     fetchAllOnePhaseData();
-    /*  Data = [...(onePhaseBox.getValues())];
-
-    count = Data.length;
-    if (Data.length != 0) {
-      emit(DBHasData());
-    } else {
-      emit(DBHasNoData());
-    } */
   }
 
   onePhaselocalDataSave(OnePhaseObject data) {

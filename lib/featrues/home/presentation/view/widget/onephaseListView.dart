@@ -29,7 +29,7 @@ class _OnephaseListViewState extends State<OnephaseListView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OnePhaseCubit, OnePhaseState>(builder: (context, state) {
-      List Data = BlocProvider.of<OnePhaseCubit>(context).Data;
+      List Data = BlocProvider.of<OnePhaseCubit>(context).data;
 
       return (state is DBHasData)
           ? Container(

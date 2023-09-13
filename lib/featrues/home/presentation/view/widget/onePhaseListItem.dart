@@ -8,7 +8,7 @@ import 'package:x_coil/featrues/OnePhaseAddPage/data/models/onePhaseObject.dart'
 
 // ignore: camel_case_types
 class onePhaseListItem extends StatelessWidget {
-  onePhaseListItem({Key? key, required this.data}) : super(key: key);
+  const onePhaseListItem({Key? key, required this.data}) : super(key: key);
 
   final OnePhaseObject data;
 
@@ -23,7 +23,7 @@ class onePhaseListItem extends StatelessWidget {
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.circular(10)),
                 child: PullDownButton(
                     itemBuilder: (context) => [
@@ -66,28 +66,28 @@ class onePhaseListItem extends StatelessWidget {
                           showMenu();
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Stack(children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   data.custName.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.red,
                                       //   fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   data.motorName.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Color.fromARGB(255, 0, 0, 0),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   data.date.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 13,
                                   ),
                                 ),
@@ -101,22 +101,22 @@ class onePhaseListItem extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: scheduleOnePhase.contains(data.id)
-                    ? CircleAvatar(
+                    ? const CircleAvatar(
+                        radius: 10,
+                        backgroundColor: Colors.amber,
                         child: Icon(
                           Icons.upload,
                           size: 15,
                           color: Colors.black,
-                        ),
+                        ))
+                    : const CircleAvatar(
                         radius: 10,
-                        backgroundColor: Colors.amber)
-                    : CircleAvatar(
+                        backgroundColor: Colors.green,
                         child: Icon(
                           Icons.check,
                           size: 15,
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                        ),
-                        radius: 10,
-                        backgroundColor: Colors.green),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        )),
               ),
             )
           ],
