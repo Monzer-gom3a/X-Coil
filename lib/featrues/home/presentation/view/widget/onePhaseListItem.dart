@@ -17,54 +17,52 @@ class onePhaseListItem extends StatelessWidget {
     List scheduleOnePhase =
         BlocProvider.of<OnePhaseCubit>(context).scheduleOnePhase;
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.only(top: 12),
         child: Stack(
           children: [
-            Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                    borderRadius: BorderRadius.circular(10)),
-                child: PullDownButton(
-                    itemBuilder: (context) => [
-                          PullDownMenuItem(
-                            title: 'نسخ',
-                            subtitle: 'نسخ الكود الى الحافظة',
-                            onTap: () {
-                              Clipboard.setData(
-                                      ClipboardData(text: 'll'.toString()))
-                                  .then((_) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        dismissDirection:
-                                            DismissDirection.horizontal,
-                                        backgroundColor: Colors.green[900],
-                                        content: const Center(
-                                          child: Text("تم النسخ الى الحافظة",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255))),
-                                        )));
-                              });
-                            },
-                            icon: CupertinoIcons.doc_on_clipboard,
-                          ),
-                          PullDownMenuItem(
-                            onTap: () {
-                              BlocProvider.of<OnePhaseCubit>(context)
-                                  .deleteByID(data.id.toString());
-                            },
-                            subtitle: 'الحذف من الهاتف و الانترنت',
-                            title: 'حذف',
-                            isDestructive: true,
-                            icon: CupertinoIcons.delete,
-                          ),
-                        ],
-                    buttonBuilder: (context, showMenu) => GestureDetector(
-                        onLongPress: () {
-                          showMenu();
+            PullDownButton(
+                itemBuilder: (context) => [
+                      PullDownMenuItem(
+                        title: 'نسخ',
+                        subtitle: 'نسخ الكود الى الحافظة',
+                        onTap: () {
+                          Clipboard.setData(
+                                  ClipboardData(text: 'll'.toString()))
+                              .then((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                dismissDirection: DismissDirection.horizontal,
+                                backgroundColor: Colors.green[900],
+                                content: const Center(
+                                  child: Text("تم النسخ الى الحافظة",
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255))),
+                                )));
+                          });
                         },
+                        icon: CupertinoIcons.doc_on_clipboard,
+                      ),
+                      PullDownMenuItem(
+                        onTap: () {
+                          BlocProvider.of<OnePhaseCubit>(context)
+                              .deleteByID(data.id.toString());
+                        },
+                        subtitle: 'الحذف من الهاتف و الانترنت',
+                        title: 'حذف',
+                        isDestructive: true,
+                        icon: CupertinoIcons.delete,
+                      ),
+                    ],
+                buttonBuilder: (context, showMenu) => GestureDetector(
+                    onLongPress: () {
+                      showMenu();
+                    },
+                    child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(10)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Stack(children: [
@@ -91,6 +89,50 @@ class onePhaseListItem extends StatelessWidget {
                                     fontSize: 13,
                                   ),
                                 ),
+                                Wrap(
+                                  children: [
+                                    Text(
+                                      "عدد المجاري: ",
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                    Text(
+                                      data.cylinderNum.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                    Text(
+                                      " - القدرة: " +
+                                          "${data.hP.toString()}حصان ",
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                    Text(
+                                      " - الطول: " +
+                                          "${data.length.toString()}سم",
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                    Text(
+                                      " - القطر: " +
+                                          "${data.diameter.toString()}سم",
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                    Text(
+                                      " - السرعة: " +
+                                          "${data.speed.toString()}",
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             )
                           ]),

@@ -6,6 +6,6 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Home_Page_View();
+    return Home_Page_View();
   }
 }

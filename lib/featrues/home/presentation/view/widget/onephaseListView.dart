@@ -7,6 +7,7 @@ import 'package:x_coil/blocs/Onephase_cubit/OnePhase_cubit.dart';
 import 'package:x_coil/core/utils/constance.dart';
 import 'package:x_coil/featrues/OnePhaseAddPage/data/models/onePhaseObject.dart';
 import 'onePhaseListItem.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class OnephaseListView extends StatefulWidget {
   OnephaseListView({
@@ -25,7 +26,6 @@ class _OnephaseListViewState extends State<OnephaseListView> {
     BlocProvider.of<OnePhaseCubit>(context).fetchAllOnePhaseData();
   }
 
-  int count = 0;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OnePhaseCubit, OnePhaseState>(builder: (context, state) {
@@ -35,15 +35,15 @@ class _OnephaseListViewState extends State<OnephaseListView> {
           ? Container(
               color: AppColors.grayColor,
               child: Align(
-                alignment: Alignment.topCenter,
+                alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, crossAxisSpacing: 16),
-                    physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
+                  child: MasonryGridView.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    //  reverse: true,
+                    //physics: const BouncingScrollPhysics(),
+
                     itemCount: BlocProvider.of<OnePhaseCubit>(context).count,
                     itemBuilder: (context, index) {
                       OnePhaseObject DataObject =

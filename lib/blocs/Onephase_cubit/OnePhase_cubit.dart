@@ -16,19 +16,16 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
   final userBox = GetStorage('User');
 
   int count = 0;
-  List<String> scheduleOnePhase = [];
+  List scheduleOnePhase = [];
   List data = [];
-
-  getCount() {
-    List onephaseKeys = [...onePhaseBox.getKeys()];
-    count = onephaseKeys.length;
-  }
 
   void fetchAllOnePhaseData() {
     data = [...(onePhaseBox.getValues())];
-
+    scheduleOnePhase = userBox.read("scheduleOnePhase")!=null
+        ? jsonDecode(userBox.read("scheduleOnePhase"))
+        : [];
     count = data.length;
-    if (data.isNotEmpty) {
+    if (data.length != 0) {
       emit(DBHasData());
     } else {
       emit(DBHasNoData());
@@ -37,6 +34,8 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
 
   void deleteByID(String id) {
     onePhaseBox.remove(id);
+    scheduleOnePhase.remove(id);
+    userBox.write("scheduleOnePhase", jsonEncode(scheduleOnePhase));
     fetchAllOnePhaseData();
   }
 
@@ -69,7 +68,7 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
       }); //sending post request with header data
       if (res1.statusCode == 200) {
         var premiumList = jsonDecode(res1.body);
-        var data = premiumList['data'];
+        data = premiumList['data'];
         emit(AddCoilSuccess());
       }
     } catch (e) {

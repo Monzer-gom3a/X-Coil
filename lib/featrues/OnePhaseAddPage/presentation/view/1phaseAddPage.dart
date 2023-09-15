@@ -1,7 +1,4 @@
 //import 'dart:developer';
-
-import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -20,30 +17,12 @@ class OnePhaseAddPage extends StatefulWidget {
 }
 
 class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
-/*   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Timer myTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {});
-    });
-  } */
-
   OnePhaseObject objectbuild() {
-    var id = DateTime.now().day.toString() +
-        DateTime.now().month.toString() +
-        DateTime.now().year.toString() +
-        "userName" +
-        DateTime.now().hour.toString() +
-        DateTime.now().minute.toString() +
-        DateTime.now().second.toString() +
-        DateTime.now().microsecond.toString();
+    var id =
+        "${DateTime.now().day}${DateTime.now().month}${DateTime.now().year}userName${DateTime.now().hour}${DateTime.now().minute}${DateTime.now().second}${DateTime.now().microsecond}";
 
-    String Date = DateTime.now().day.toString() +
-        '/' +
-        DateTime.now().month.toString() +
-        '/' +
-        DateTime.now().year.toString();
+    String date =
+        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}';
     setState(() {});
     return OnePhaseObject(
         id: id,
@@ -64,7 +43,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
         cO: CO,
         publicShare: publicShare,
         notes: Notes.text,
-        date: Date,
+        date: date,
         one1: one_1.text,
         one2: one_2.text,
         one3: one_3.text,
@@ -219,7 +198,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
         ),
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -411,17 +390,15 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                   fontFamily: "cairo",
                                   fontSize: 13),
                             ),
-                            Container(
-                              child: CupertinoSwitch(
-                                activeColor: Colors.red,
-                                trackColor: Colors.red,
-                                value: evenORodd,
-                                onChanged: (value) {
-                                  setState(() {
-                                    evenORodd = value;
-                                  });
-                                },
-                              ),
+                            CupertinoSwitch(
+                              activeColor: Colors.red,
+                              trackColor: Colors.red,
+                              value: evenORodd,
+                              onChanged: (value) {
+                                setState(() {
+                                  evenORodd = value;
+                                });
+                              },
                             ),
                             const Text(
                               "خطوة زوجية",
@@ -900,7 +877,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                     fontFamily: "cairo",
                   ),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 activeTrackColor: Colors.red,
                 inactiveTrackColor: Colors.black54,
                 thumbColor:
@@ -920,7 +897,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                     fontFamily: "cairo",
                   ),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 activeTrackColor: Colors.red,
                 inactiveTrackColor: Colors.black54,
                 thumbColor:
@@ -962,13 +939,13 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                   log("please complete data");
 
                                   ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
+                                      .showSnackBar(const SnackBar(
                                     backgroundColor:
-                                        const Color.fromARGB(255, 184, 12, 0),
+                                        Color.fromARGB(255, 184, 12, 0),
                                     content: Text(
                                       'اكمل البيانات الاساسية',
                                       style: TextStyle(
-                                          color: const Color.fromARGB(
+                                          color: Color.fromARGB(
                                               255, 255, 255, 255),
                                           fontFamily: "cairo"),
                                     ),
@@ -982,8 +959,8 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                   }
                                 }
                               },
-                              child: Text(
-                                '${BlocProvider.of<OnePhaseCubit>(context).count}',
+                              child: const Text(
+                                'حفظ',
                                 style: TextStyle(
                                     fontFamily: "cairo",
                                     fontWeight: FontWeight.bold,

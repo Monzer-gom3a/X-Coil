@@ -14,11 +14,6 @@ class DBHasData extends OnePhaseState {}
 
 class DBHasNoData extends OnePhaseState {}
 
-class counted extends OnePhaseState {
-  final String count;
-
-  counted(this.count);
-}
 
 class AddCoilFailure extends OnePhaseState {
   final String errMessage;
