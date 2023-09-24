@@ -12,3 +12,20 @@ class home_page_body extends StatelessWidget {
     ]);
   }
 }
+
+/*
+ Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: const Color.fromARGB(255, 193, 11, 11),
+              ),
+              height: 50,
+              width: double.infinity,
+            ),
+          ),
+        )
+ */

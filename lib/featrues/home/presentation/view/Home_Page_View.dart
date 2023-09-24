@@ -2,7 +2,6 @@ import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:x_coil/blocs/Internet_bloc/network_bloc.dart';
 import 'package:x_coil/blocs/Internet_bloc/network_state.dart';
 import 'package:x_coil/blocs/Onephase_cubit/OnePhase_cubit.dart';
@@ -49,7 +48,7 @@ class Home_Page_View extends StatelessWidget {
                               tooltip: "القائمة الجانبية",
                               onPressed: () {
                                 Navigator.push(
-                                    context, SizeTransition5(DrawerPage()));
+                                    context, SizeTransition5(const DrawerPage()));
                               },
                               icon: Image.asset(
                                 'assets/images/menu.png',
@@ -83,9 +82,10 @@ class Home_Page_View extends StatelessWidget {
                             IconButton(
                               tooltip: "مزامنة مع الانترنت",
                               onPressed: () {
-                                GetStorage('OnePhaseCoils').erase();
-                                GetStorage('User').erase();
-
+                                //    GetStorage('OnePhaseCoils').erase();
+                                // GetStorage('User').erase();
+                                BlocProvider.of<OnePhaseCubit>(context)
+                                    .scheduleOnePhase_service();
                                 BlocProvider.of<OnePhaseCubit>(context)
                                     .fetchAllOnePhaseData();
                               },
@@ -105,7 +105,7 @@ class Home_Page_View extends StatelessWidget {
             elevation: 0,
             centerTitle: true,
           ),
-          body: Center(
+          body: const Center(
             child: home_page_body(),
           ),
           floatingActionButton: const FloatingAddButton(),
@@ -130,14 +130,14 @@ class internetConnectionCheck extends StatelessWidget {
           print("object");
         } else if (state is NetworkSuccess) {
           FloatingSnackBar(
-              backgroundColor: Color.fromARGB(255, 7, 152, 72),
+              backgroundColor: const Color.fromARGB(255, 7, 152, 72),
               message: "تم الاتصال بالانترنت",
               context: context);
         } else {
           print("object111111111111111");
         }
       },
-      child: home_page_body(),
+      child: const home_page_body(),
     );
   }
 }
@@ -177,12 +177,12 @@ class _tab1State extends State<tab1> {
       builder: (context, state) {
         return Tab(
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("محركات 1 فاز",
+          const Text("محركات 1 فاز",
               style: TextStyle(
                   //fontSize: 17,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 2, 2, 2))),
-          SizedBox(
+          const SizedBox(
             width: 6,
           ),
           // int rr = BlocProvider.of<OnePhaseCubit>(context).getCount();
@@ -190,7 +190,7 @@ class _tab1State extends State<tab1> {
             radius: 10,
             child: Text(
               '${BlocProvider.of<OnePhaseCubit>(context).count}',
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
             ),
           )
         ]));

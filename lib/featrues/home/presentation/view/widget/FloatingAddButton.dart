@@ -8,13 +8,15 @@ class FloatingAddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton( 
+    return FloatingActionButton(
       autofocus: true,
       tooltip: "إضافة ",
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return OnePhaseAddPage();
+            return OnePhaseAddPage(
+              readOnly: false,
+            );
           },
         ));
       },

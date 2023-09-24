@@ -19,12 +19,32 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
   List scheduleOnePhase = [];
   List data = [];
 
+  // ignore: non_constant_identifier_names
+  scheduleOnePhase_service() {
+    if (scheduleOnePhase.isEmpty) {
+      debugPrint("List is empty");
+    } else {
+      upload_loop();
+    }
+  }
+
+  // ignore: non_constant_identifier_names
+  void upload_loop() {
+    for (var i in scheduleOnePhase) {
+      OnePhaseObject scheduleonephaseObject =
+          OnePhaseObject.fromJson(jsonDecode(onePhaseBox.read(i)));
+      sendData(scheduleonephaseObject);
+    }
+  }
+
   void fetchAllOnePhaseData() {
     data = [...(onePhaseBox.getValues())];
-    scheduleOnePhase = userBox.read("scheduleOnePhase")!=null
+    scheduleOnePhase = userBox.read("scheduleOnePhase") != null
         ? jsonDecode(userBox.read("scheduleOnePhase"))
         : [];
+
     count = data.length;
+
     if (data.length != 0) {
       emit(DBHasData());
     } else {
@@ -35,41 +55,66 @@ class OnePhaseCubit extends Cubit<OnePhaseState> {
   void deleteByID(String id) {
     onePhaseBox.remove(id);
     scheduleOnePhase.remove(id);
-    userBox.write("scheduleOnePhase", jsonEncode(scheduleOnePhase));
     fetchAllOnePhaseData();
   }
 
-  onePhaselocalDataSave(OnePhaseObject data) {
-    onePhaseBox.write(data.id.toString(), jsonEncode(data));
-
-    List onephaseKeys = [...onePhaseBox.getKeys()];
-    count = onephaseKeys.length;
-    scheduleOnePhase.add(data.id.toString());
-    userBox.write("scheduleOnePhase", jsonEncode(scheduleOnePhase));
-    fetchAllOnePhaseData();
-    debugPrint(jsonDecode(userBox.read('scheduleOnePhase')).toString());
+  Future onePhaselocalDataSave(OnePhaseObject data) async {
+    emit(AddCoilLoading());
+    try {
+      fetchAllOnePhaseData();
+      await onePhaseBox.write(data.id.toString(), jsonEncode(data));
+      scheduleOnePhase.add(data.id.toString());
+      await userBox.write("scheduleOnePhase", jsonEncode(scheduleOnePhase));
+      emit(AddCoilLocalSuccess());
+      fetchAllOnePhaseData();
+    } on Exception catch (e) {
+      emit(AddCoilFailure(e.toString()));
+    }
   }
 
-  Future sendData(OnePhaseObject datas) async {
+  Future getCount() async {
     emit(AddCoilLoading());
     try {
       var res1 = await http
-          .post(Uri.parse("http://192.168.1.6/X-Coil/addCoil.php"), body: {
-        "userID": "011162003491",
-        "motorID": datas.id,
-        "command": jsonEncode(datas.toJson()),
-        "phase": "1",
-        "public": datas.publicShare.toString(),
-        "factoryState": datas.cO.toString(),
-        "length": datas.length,
-        "diameter": datas.diameter,
-        "cylenderNum": datas.cylinderNum,
-        "HP": datas.hP
+          .post(Uri.parse("http://192.168.1.14/X-Coil/addCoil.php"), body: {
+        "userID": "01116200349",
       }); //sending post request with header data
       if (res1.statusCode == 200) {
         var premiumList = jsonDecode(res1.body);
-        data = premiumList['data'];
-        emit(AddCoilSuccess());
+        print(premiumList);
+      }
+    } catch (e) {
+      emit(AddCoilFailure(e.toString()));
+    }
+  }
+
+  Future sendData(OnePhaseObject data) async {
+    emit(AddCoilLoading());
+    try {
+      var res1 = await http
+          .post(Uri.parse("http://192.168.1.14/X-Coil/addCoil.php"), body: {
+        "userID": "01116200349",
+        "motorID": data.id.toString(),
+        "command": jsonEncode(data.toJson()),
+        "phase": "1",
+        "public": data.publicShare.toString(),
+        "factoryState": data.cO.toString(),
+        "length": data.length.toString(),
+        "diameter": data.diameter.toString(),
+        "cylenderNum": data.cylinderNum.toString(),
+        "HP": data.hP.toString()
+      }); //sending post request with header data
+      if (res1.statusCode == 200) {
+        var premiumList = jsonDecode(res1.body);
+        //    data = premiumList['data'];
+        scheduleOnePhase.remove(data.id);
+        await userBox.write("scheduleOnePhase", jsonEncode(scheduleOnePhase));
+        fetchAllOnePhaseData();
+        if (premiumList['success'] == false) {
+          emit(DataHadBeenSavedRecntly());
+        }
+
+        print(premiumList);
       }
     } catch (e) {
       emit(AddCoilFailure(e.toString()));

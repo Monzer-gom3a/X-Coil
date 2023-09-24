@@ -7,6 +7,7 @@ class TextFieldModel extends StatelessWidget {
       required this.Controller,
       required this.align,
       required this.flix,
+      required this.enabled,
       required this.keyboardType});
 
   final String label;
@@ -14,6 +15,8 @@ class TextFieldModel extends StatelessWidget {
   final int flix;
 
   final TextAlign align;
+  final bool enabled;
+
   final TextInputType? keyboardType;
 
   @override
@@ -21,6 +24,7 @@ class TextFieldModel extends StatelessWidget {
     return Expanded(
       flex: flix,
       child: TextField(
+        readOnly: enabled,
         controller: Controller,
         keyboardType: keyboardType,
         cursorColor: const Color.fromARGB(255, 240, 20, 4),
@@ -41,7 +45,6 @@ class TextFieldModel extends StatelessWidget {
               )),
         ),
         textAlign: align,
-       
         style: const TextStyle(
             fontFamily: "cairo", fontSize: 16, color: Colors.black),
       ),

@@ -10,7 +10,9 @@ import 'package:x_coil/featrues/OnePhaseAddPage/presentation/view_models/widgets
 import '../../../../blocs/Onephase_cubit/OnePhase_cubit.dart';
 
 class OnePhaseAddPage extends StatefulWidget {
-  const OnePhaseAddPage({Key? key}) : super(key: key);
+  const OnePhaseAddPage({Key? key, required this.readOnly}) : super(key: key);
+
+  final bool readOnly;
 
   @override
   State<OnePhaseAddPage> createState() => _OnePhaseAddPageState();
@@ -215,6 +217,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                 child: Row(
                   children: [
                     TextFieldModel(
+                      enabled: widget.readOnly,
                       label: "اسم العميل :",
                       Controller: CustNameController,
                       align: TextAlign.start,
@@ -243,6 +246,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                 child: Row(
                   children: [
                     TextFieldModel(
+                      enabled: widget.readOnly,
                       keyboardType: TextInputType.text,
                       label: "اسم الموتور :",
                       Controller: MotorNameController,
@@ -253,6 +257,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                       width: 16,
                     ),
                     TextFieldModel(
+                        enabled: widget.readOnly,
                         keyboardType: TextInputType.number,
                         label: "HP",
                         Controller: HP,
@@ -267,6 +272,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(children: [
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'عدد المجاري',
                       Controller: CylinderNum,
                       align: TextAlign.center,
@@ -276,6 +282,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                     width: 16,
                   ),
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'الطول',
                       Controller: Length,
                       align: TextAlign.center,
@@ -285,6 +292,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                     width: 16,
                   ),
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'القطر',
                       Controller: Diameter,
                       align: TextAlign.center,
@@ -299,6 +307,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextFieldModel(
+                        enabled: widget.readOnly,
                         label: 'عرض المجرى',
                         Controller: CyWidth,
                         align: TextAlign.center,
@@ -308,6 +317,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                       width: 16,
                     ),
                     TextFieldModel(
+                        enabled: widget.readOnly,
                         label: 'كرونا',
                         Controller: Crona,
                         align: TextAlign.center,
@@ -317,6 +327,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                       width: 16,
                     ),
                     TextFieldModel(
+                        enabled: widget.readOnly,
                         label: 'Speed',
                         Controller: Speed,
                         align: TextAlign.center,
@@ -329,6 +340,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(children: [
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'مكثف البدء μF',
                       Controller: StartCap,
                       align: TextAlign.center,
@@ -338,6 +350,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                     width: 16,
                   ),
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'مكثف التشغيل μF',
                       Controller: RunCap,
                       align: TextAlign.center,
@@ -350,6 +363,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(children: [
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'قطر سلك التشغيل',
                       Controller: RunDiameter,
                       align: TextAlign.center,
@@ -359,6 +373,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                     width: 16,
                   ),
                   TextFieldModel(
+                      enabled: widget.readOnly,
                       label: 'قطر سلك التقويم',
                       Controller: StartDiameter,
                       align: TextAlign.center,
@@ -439,6 +454,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 4',
                                       Controller: two_1,
                                       align: TextAlign.center,
@@ -448,6 +464,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 6',
                                       Controller: two_2,
                                       align: TextAlign.center,
@@ -457,6 +474,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 8',
                                       Controller: two_3,
                                       align: TextAlign.center,
@@ -466,6 +484,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 10',
                                       Controller: two_4,
                                       align: TextAlign.center,
@@ -482,6 +501,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 12',
                                       Controller: two_5,
                                       align: TextAlign.center,
@@ -491,6 +511,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 14',
                                       Controller: two_6,
                                       align: TextAlign.center,
@@ -500,6 +521,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 16',
                                       Controller: two_7,
                                       align: TextAlign.center,
@@ -509,6 +531,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 18',
                                       Controller: two_8,
                                       align: TextAlign.center,
@@ -542,6 +565,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 4',
                                       Controller: two_9,
                                       align: TextAlign.center,
@@ -551,6 +575,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 6',
                                       Controller: two_10,
                                       align: TextAlign.center,
@@ -560,6 +585,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 8',
                                       Controller: two_11,
                                       align: TextAlign.center,
@@ -569,6 +595,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 10',
                                       Controller: two_12,
                                       align: TextAlign.center,
@@ -585,6 +612,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 12',
                                       Controller: two_13,
                                       align: TextAlign.center,
@@ -594,6 +622,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 14',
                                       Controller: two_14,
                                       align: TextAlign.center,
@@ -603,6 +632,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 16',
                                       Controller: two_15,
                                       align: TextAlign.center,
@@ -612,6 +642,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 18',
                                       Controller: two_16,
                                       align: TextAlign.center,
@@ -644,6 +675,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 3',
                                       Controller: one_1,
                                       align: TextAlign.center,
@@ -653,6 +685,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 5',
                                       Controller: one_2,
                                       align: TextAlign.center,
@@ -662,6 +695,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 7',
                                       Controller: one_3,
                                       align: TextAlign.center,
@@ -671,6 +705,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 9',
                                       Controller: one_4,
                                       align: TextAlign.center,
@@ -687,6 +722,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 11',
                                       Controller: one_5,
                                       align: TextAlign.center,
@@ -696,6 +732,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 13',
                                       Controller: one_6,
                                       align: TextAlign.center,
@@ -705,6 +742,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 15',
                                       Controller: one_7,
                                       align: TextAlign.center,
@@ -714,6 +752,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 17',
                                       Controller: one_8,
                                       align: TextAlign.center,
@@ -747,6 +786,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 3',
                                       Controller: one_9,
                                       align: TextAlign.center,
@@ -756,6 +796,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 5',
                                       Controller: one_10,
                                       align: TextAlign.center,
@@ -765,6 +806,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 7',
                                       Controller: one_11,
                                       align: TextAlign.center,
@@ -774,6 +816,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 9',
                                       Controller: one_12,
                                       align: TextAlign.center,
@@ -790,6 +833,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 11',
                                       Controller: one_13,
                                       align: TextAlign.center,
@@ -799,6 +843,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 13',
                                       Controller: one_14,
                                       align: TextAlign.center,
@@ -808,6 +853,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 15',
                                       Controller: one_15,
                                       align: TextAlign.center,
@@ -817,6 +863,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                                     width: 16,
                                   ),
                                   TextFieldModel(
+                                      enabled: widget.readOnly,
                                       label: '1 : 17',
                                       Controller: one_16,
                                       align: TextAlign.center,
@@ -838,6 +885,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: TextField(
+                  readOnly: widget.readOnly,
                   keyboardType: TextInputType.multiline,
                   maxLines: 5,
                   minLines: null,
@@ -870,6 +918,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
               ),
 
               SwitchListTile(
+                enableFeedback: !widget.readOnly,
                 title: const Text(
                   "بيانات الشركة المصنعة ؟",
                   style: TextStyle(
@@ -890,6 +939,7 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
                 },
               ),
               SwitchListTile(
+                enableFeedback: !widget.readOnly,
                 title: const Text(
                   "المشاركة مع العامة ؟",
                   style: TextStyle(
@@ -914,62 +964,65 @@ class _OnePhaseAddPageState extends State<OnePhaseAddPage> {
               Column(
                 //    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 226, 37, 23),
-                          borderRadius: BorderRadius.circular(15)),
-                      width: MediaQuery.of(context).size.width > 500
-                          ? null
-                          : double.infinity,
-                      child: BlocBuilder<OnePhaseCubit, OnePhaseState>(
-                        builder: (context, state) {
-                          return TextButton(
-                              onLongPress: () {
-                                log("erased");
-                              },
-                              onPressed: () {
-                                if (MotorNameController.text == '' ||
-                                    CustNameController.text == '' ||
-                                    HP.text == '' ||
-                                    Length.text == '' ||
-                                    Diameter.text == '' ||
-                                    CylinderNum.text == '') {
-                                  log("please complete data");
-
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 184, 12, 0),
-                                    content: Text(
-                                      'اكمل البيانات الاساسية',
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                          fontFamily: "cairo"),
-                                    ),
-                                  ));
-                                } else {
-                                  BlocProvider.of<OnePhaseCubit>(context)
-                                      .onePhaselocalDataSave(objectbuild());
-
-                                  if (state is AddCoilFailure) {
-                                    //Navigator.pop(context);
+                  widget.readOnly
+                      ? SizedBox()
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 226, 37, 23),
+                                borderRadius: BorderRadius.circular(15)),
+                            width: MediaQuery.of(context).size.width > 500
+                                ? null
+                                : double.infinity,
+                            child: BlocListener<OnePhaseCubit, OnePhaseState>(
+                                listener: (context, state) {
+                                  if (state is AddCoilLocalSuccess) {
+                                    print("cccc");
+                                    Navigator.pop(context);
                                   }
-                                }
-                              },
-                              child: const Text(
-                                'حفظ',
-                                style: TextStyle(
-                                    fontFamily: "cairo",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 255, 255, 255)),
-                              ));
-                        },
-                      ),
-                    ),
-                  ),
+                                },
+                                child: TextButton(
+                                    onLongPress: () {
+                                      log("erased");
+                                    },
+                                    onPressed: () {
+                                      if (MotorNameController.text == '' ||
+                                          CustNameController.text == '' ||
+                                          HP.text == '' ||
+                                          Length.text == '' ||
+                                          Diameter.text == '' ||
+                                          CylinderNum.text == '') {
+                                        log("please complete data");
+
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 184, 12, 0),
+                                          content: Text(
+                                            'اكمل البيانات الاساسية',
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255),
+                                                fontFamily: "cairo"),
+                                          ),
+                                        ));
+                                      } else {
+                                        BlocProvider.of<OnePhaseCubit>(context)
+                                            .onePhaselocalDataSave(
+                                                objectbuild());
+                                      }
+                                    },
+                                    child: const Text(
+                                      'حفظ',
+                                      style: TextStyle(
+                                          fontFamily: "cairo",
+                                          fontWeight: FontWeight.bold,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255)),
+                                    ))),
+                          ),
+                        ),
                   const SizedBox(
                     height: 10,
                   ),

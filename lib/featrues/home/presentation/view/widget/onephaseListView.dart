@@ -30,29 +30,27 @@ class _OnephaseListViewState extends State<OnephaseListView> {
   Widget build(BuildContext context) {
     return BlocBuilder<OnePhaseCubit, OnePhaseState>(builder: (context, state) {
       List Data = BlocProvider.of<OnePhaseCubit>(context).data;
+      List DataRevesed = new List.from(Data.reversed);
 
       return (state is DBHasData)
           ? Container(
               color: AppColors.grayColor,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: MasonryGridView.count(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    //  reverse: true,
-                    //physics: const BouncingScrollPhysics(),
-
-                    itemCount: BlocProvider.of<OnePhaseCubit>(context).count,
-                    itemBuilder: (context, index) {
-                      OnePhaseObject DataObject =
-                          OnePhaseObject.fromJson(jsonDecode(Data[index]));
-                      return onePhaseListItem(
-                        data: DataObject,
-                      );
-                    },
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: MasonryGridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  //  reverse: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: BlocProvider.of<OnePhaseCubit>(context).count,
+                  
+                  itemBuilder: (context, index) {
+                    OnePhaseObject DataObject =
+                        OnePhaseObject.fromJson(jsonDecode(DataRevesed[index]));
+                    return onePhaseListItem(
+                      data: DataObject,
+                    );
+                  },
                 ),
               ),
             )
